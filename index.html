@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v26-2026-11-18 (gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v27-2026-11-18 (novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -394,6 +394,53 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
   .predlogi{position:fixed;left:10px;right:10px;top:auto;margin-top:6px}
 }
 @media (max-width:370px){ .nazaj-kratko{display:none} .nazaj-mini{display:inline} }
+/* ══ v27: novičke s kodo za popust + koda v košarici ══ */
+.nov-ozadje{position:fixed;inset:0;z-index:90;background:rgba(23,40,52,.48);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .25s}
+.nov-ozadje.on{opacity:1}
+.nov-ozadje[hidden]{display:none}
+.nov-okno{position:relative;display:grid;grid-template-columns:44% 56%;width:min(760px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:translateY(12px);transition:transform .25s}
+.nov-ozadje.on .nov-okno{transform:none}
+.nov-slika{background:#F4E9DC;min-height:100%}
+.nov-slika img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.nov-vsebina{padding:34px 30px 26px;display:flex;flex-direction:column;justify-content:center}
+.nov-x{position:absolute;top:10px;right:10px;width:40px;height:40px;border:none;border-radius:50%;background:rgba(255,255,255,.9);font-size:1.3rem;color:var(--navy);cursor:pointer}
+.nov-x:hover{background:#fff;color:var(--koral-temna)}
+.nov-vsebina h2{font-family:var(--serif,inherit);font-weight:400;font-size:1.85rem;line-height:1.15;margin:0 0 10px;color:var(--navy)}
+.nov-vsebina h2 b{color:var(--koral-temna);font-weight:400}
+.nov-vsebina p{margin:0 0 8px;color:#3d5260;line-height:1.55}
+.nov-vsebina .nov-pogoj{font-size:.86rem;color:#5f6d75;font-style:italic;margin-bottom:16px}
+.nov-vsebina form{display:flex;flex-direction:column;gap:10px}
+.nov-vsebina input{height:46px;border:1.5px solid var(--crta);border-radius:12px;padding:0 14px;font:inherit;font-size:1rem;color:var(--navy);background:#fff}
+.nov-vsebina input:focus{outline:none;border-color:var(--koral)}
+.nov-gumb{height:48px;border:none;border-radius:999px;background:var(--koral-temna);color:#fff;font:inherit;font-weight:600;font-size:1rem;cursor:pointer}
+.nov-gumb:hover{background:#a64848}
+.nov-gumb[disabled]{opacity:.6;cursor:default}
+.nov-drobno{font-size:.78rem!important;color:#6f7f89!important;margin-top:10px!important}
+.nov-drobno a{color:inherit}
+.nov-msg{font-size:.9rem;color:var(--koral-txt);min-height:1.2em;margin:2px 0 0!important}
+.nov-koda{display:flex;align-items:center;gap:10px;margin:10px 0 14px;flex-wrap:wrap}
+.nov-koda code{font-family:inherit;font-size:1.5rem;font-weight:600;letter-spacing:.08em;background:#F4E9DC;color:var(--navy);padding:10px 16px;border-radius:12px}
+.nov-koda button{height:40px;padding:0 16px;border:1.5px solid var(--crta);border-radius:999px;background:#fff;font:inherit;cursor:pointer;color:var(--navy)}
+.noga a.noga-novicke{color:var(--koral-txt);font-weight:600}
+@media (max-width:640px){
+  .nov-ozadje{align-items:flex-end;padding:0}
+  .nov-okno{grid-template-columns:1fr;border-radius:22px 22px 0 0;max-height:94dvh}
+  .nov-slika{height:190px;min-height:0}
+  .nov-slika img{object-position:50% 42%}
+  .nov-vsebina{padding:20px 18px calc(20px + env(safe-area-inset-bottom,0))}
+  .nov-vsebina h2{font-size:1.5rem}
+}
+/* koda za popust v košarici */
+.koda-vrsta{margin:0 0 10px}
+.koda-vrsta details summary{cursor:pointer;font-size:.9rem;color:var(--koral-txt);list-style:none}
+.koda-vrsta details summary::-webkit-details-marker{display:none}
+.koda-polje{display:flex;gap:8px;margin-top:8px}
+.koda-polje input{flex:1;min-width:0;height:42px;border:1.5px solid var(--crta);border-radius:10px;padding:0 12px;font:inherit;text-transform:uppercase}
+.koda-polje button{height:42px;padding:0 16px;border:1.5px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);font:inherit;font-weight:600;cursor:pointer}
+.koda-msg{font-size:.84rem;margin-top:6px;color:var(--koral-txt)}
+.koda-ok{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.9rem;color:#2f6b45;background:#eef6f0;border-radius:10px;padding:8px 12px}
+.koda-ok button{border:none;background:none;color:#5f6d75;cursor:pointer;font:inherit;text-decoration:underline}
+.vsota.popust span:last-child{color:#2f6b45}
 </style>
 </head>
 <body>
@@ -462,9 +509,18 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 <footer class="noga">
   <div class="noga-in">
     <div>FRIZERSKI STUDIO NAJS, Nataša Markuta s.p. · Cesta talcev 3B, 4220 Škofja Loka · Matična št. 7614381000 · Davčna št. 54499453<br>Cene so končne. DDV ni obračunan na podlagi prvega odstavka 94. člena ZDDV-1.</div>
-    <div><a href="https://najs.si/">Spletna stran</a> &nbsp; <a href="https://najs.si/pogoji.html">Pogoji poslovanja</a> &nbsp; <a href="https://najs.si/zasebnost.html">Zasebnost</a> &nbsp; <a href="https://najs.si/piskotki.html">Piškotki</a> &nbsp; <a href="tel:+38631217361">031 217 361</a></div>
+    <div><a href="https://najs.si/">Spletna stran</a> &nbsp; <a href="https://najs.si/pogoji.html">Pogoji poslovanja</a> &nbsp; <a href="https://najs.si/zasebnost.html">Zasebnost</a> &nbsp; <a href="https://najs.si/piskotki.html">Piškotki</a> &nbsp; <a href="tel:+38631217361">031 217 361</a> &nbsp; <a href="#" class="noga-novicke" id="novNoga">Novičke · 10 % popusta</a></div>
   </div>
 </footer>
+
+<!-- v27: novičke -->
+<div class="nov-ozadje" id="novOzadje" hidden>
+  <div class="nov-okno" role="dialog" aria-modal="true" aria-labelledby="novNaslov">
+    <button type="button" class="nov-x" id="novZapri" aria-label="Zapri">×</button>
+    <div class="nov-slika"><img src="https://najs.si/natasa.jpg" alt="Nataša Markuta, Frizerski studio Najs" loading="lazy"></div>
+    <div class="nov-vsebina" id="novVsebina"></div>
+  </div>
+</div>
 
 <!-- okno izdelka -->
 <div class="zatemni" id="zatemni"></div>
@@ -1189,13 +1245,23 @@ function doplacilo(){ return (PODATKI.placilo==='povzetje'&&PODATKI.dostava==='p
 function polje(ime,oznaka,tip,vr,ac,nap){
   return '<div class="polje"><label for="f_'+ime+'">'+oznaka+'</label><input id="f_'+ime+'" name="'+ime+'" type="'+tip+'" value="'+esc(vr)+'" autocomplete="'+ac+'"'+(tip==='tel'?' inputmode="tel"':'')+'><span class="napaka-p">'+nap+'</span></div>';
 }
+function kodaHtml(){
+  var v=vsotaIzdelkov();
+  if(KODA&&KODA.ok){
+    var pr=Number(KODA.prag||NOV.prag);
+    return '<div class="koda-vrsta"><div class="koda-ok"><span>Koda <b>'+esc(KODA.koda)+'</b>: '+KODA.odst+' % popusta'+(v<pr?' – velja pri nakupu izdelkov nad '+eur(pr):'')+'</span><button type="button" data-koda-odstrani>Odstrani</button></div></div>';
+  }
+  return '<div class="koda-vrsta"><details'+(KODA&&KODA.vnos?' open':'')+'><summary>Imate kodo za popust?</summary><div class="koda-polje"><input id="kodaVnos" type="text" placeholder="npr. NAJS-AB12CD" value="'+esc((KODA&&KODA.vnos)||'')+'" autocomplete="off" aria-label="Koda za popust"><button type="button" data-koda-uporabi>Uporabi</button></div>'
+    +'<div class="koda-msg" id="kodaMsg">'+esc((KODA&&KODA.msg)||'')+'</div></details></div>';
+}
 function povzetek2(){
-  var v=vsotaIzdelkov(), d=dostavaCena(), dp=doplacilo();
-  $('#pDno').innerHTML='<div class="vsota"><span>Izdelki ('+stKosov()+')</span><span>'+eur(v)+'</span></div>'
+  var v=vsotaIzdelkov(), d=dostavaCena(), dp=doplacilo(), pp=popustZnesek();
+  $('#pDno').innerHTML=kodaHtml()+'<div class="vsota"><span>Izdelki ('+stKosov()+')</span><span>'+eur(v)+'</span></div>'
+    +(pp?'<div class="vsota popust"><span>Popust '+KODA.odst+' % (koda '+esc(KODA.koda)+')</span><span>−'+eur(pp)+'</span></div>':'')
     +'<div class="vsota"><span>Dostava</span><span>'+(PODATKI.dostava==='prevzem'?'prevzem v salonu':(d?eur(d):'brezplačno'))+'</span></div>'
     +(dp?'<div class="vsota"><span>Doplačilo za povzetje</span><span>'+eur(dp)+'</span></div>':'')
-    +'<div class="vsota skupaj"><span>Skupaj za plačilo</span><span>'+eur(v+d+dp)+'</span></div>'
-    +'<button type="button" class="gumb-glavni" id="oddaj" data-oddaj>'+'Oddaj naročilo z obveznostjo plačila ('+eur(v+d+dp)+')'+'</button>'
+    +'<div class="vsota skupaj"><span>Skupaj za plačilo</span><span>'+eur(v-pp+d+dp)+'</span></div>'
+    +'<button type="button" class="gumb-glavni" id="oddaj" data-oddaj>'+'Oddaj naročilo z obveznostjo plačila ('+eur(v-pp+d+dp)+')'+'</button>'
     +'<button type="button" class="gumb-drugi" data-nazaj>Nazaj na košarico</button>';
 }
 /* ── v17: preverjanje podatkov stranke ──
@@ -1300,25 +1366,31 @@ function preveri(){
 var NAPAKE={'manjkajo-podatki':'Manjka ime ali telefon.','manjka-naslov':'Za dostavo po pošti vpišite naslov in poštno številko.',
   'neveljaven-izdelek':'Eden od izdelkov ni več na voljo. Odstranite ga iz košarice in poskusite znova.',
   'ni-zaloge':'Izdelka ni več dovolj na zalogi','ni-izdelkov':'Košarica je prazna.',
-  'povzetje-ni-na-voljo':'Plačilo po povzetju trenutno ni na voljo. Izberite drug način plačila.'};
+  'povzetje-ni-na-voljo':'Plačilo po povzetju trenutno ni na voljo. Izberite drug način plačila.',
+  'koda-neveljavna':'Koda za popust ni veljavna. Odstranite jo in oddajte naročilo znova.','koda-porabljena':'Koda za popust je že bila uporabljena. Odstranite jo in oddajte naročilo znova.',
+  'koda-prag':'Koda za popust velja samo pri nakupu izdelkov nad določenim zneskom.'};
 function oddaj(gumb){
   if(!preveri()) return;
   var opo=$('#napakaNar'); opo.classList.remove('on');
   gumb.disabled=true; gumb.textContent='Oddajam naročilo …';
   var P=PODATKI;
-  sb.rpc('ustvari_narocilo_trgovina',{
+  var argumenti={
     izdelki:KOS.map(function(p){ return {id:p.id,kolicina:p.kolicina}; }),
     nacin_dostave:P.dostava, nacin_placila:P.placilo, ime:P.ime.trim(), telefon:P.telefon.trim(),
     epota:P.email.trim()||null, naslov:P.dostava==='posta'?P.naslov.trim():null,
-    posta:P.dostava==='posta'?P.posta.trim():null, opomba:P.opomba.trim()||null
-  }).then(function(r){
+    posta:P.dostava==='posta'?P.posta.trim():null, opomba:P.opomba.trim()||null,
+  };
+  if(popustZnesek()) argumenti.koda=KODA.koda;   /* parameter samo, ce je koda – tako deluje tudi pred posodobitvijo baze */
+  sb.rpc('ustvari_narocilo_trgovina',argumenti).then(function(r){
     var d=r.data||{};
     if(r.error||!d.ok){
       var m=(d&&NAPAKE[d.napaka])||'Naročila ni bilo mogoče oddati. Poskusite znova ali me pokličite na 031 217 361.';
       if(d&&d.napaka==='ni-zaloge'&&d.izdelek) m+=': '+d.izdelek+'.';
+      if(d&&(d.napaka==='koda-porabljena'||d.napaka==='koda-neveljavna')){ KODA={msg:m}; shraniKodo(); }
       opo.textContent=m; opo.classList.add('on'); gumb.disabled=false; povzetek2(); return;
     }
     var vsebina=KOS.slice(); KOS=[]; shraniKosarico();
+    if(d.popust>0){ KODA={}; shraniKodo(); }
     KORAK=3; risiKosarico(); korak3(d,P,vsebina);
   }).catch(function(){
     opo.textContent='Povezava ni uspela. Preverite internet in poskusite znova.'; opo.classList.add('on'); gumb.disabled=false; povzetek2();
@@ -1358,6 +1430,18 @@ $('#predal').addEventListener('click',function(e){
   if(e.target.closest('[data-naprej]')){ KORAK=2; risiKosarico(); $('#pTelo').scrollTop=0; return; }
   if(e.target.closest('[data-nazaj]')){ KORAK=1; risiKosarico(); return; }
   if(e.target.closest('[data-oddaj]')){ oddaj(e.target.closest('[data-oddaj]')); return; }
+  if(e.target.closest('[data-koda-odstrani]')){ KODA={}; shraniKodo(); povzetek2(); return; }
+  if(e.target.closest('[data-koda-uporabi]')){
+    var vn=$('#kodaVnos'), k=(vn&&vn.value||'').trim().toUpperCase(), km=$('#kodaMsg');
+    if(!k){ km.textContent='Vpišite kodo.'; return; }
+    km.textContent='Preverjam …';
+    sb.rpc('preveri_kodo_popusta',{koda:k}).then(function(r){
+      var d=r.data||{};
+      if(r.error||!d.ok){ KODA={vnos:k,msg:d.napaka==='porabljena'?'Ta koda je že bila uporabljena.':'Koda ni veljavna.'}; shraniKodo(); povzetek2(); return; }
+      KODA={koda:k,odst:Number(d.odstotek),prag:Number(d.prag),ok:true}; shraniKodo(); povzetek2();
+    }).catch(function(){ km.textContent='Preverjanje ni uspelo. Poskusite znova.'; });
+    return;
+  }
   if(e.target.closest('[data-nadaljuj-nakup]')){ zapriKosarico(); KORAK=1; }
 });
 
@@ -1371,6 +1455,108 @@ $('#predal').addEventListener('click',function(e){
   $('#prSprejmi').addEventListener('click',function(){ pisi('sprejeto'); pisave(); $('#privola').classList.remove('show'); });
   $('#prZavrni').addEventListener('click',function(){ pisi('zavrnjeno'); $('#privola').classList.remove('show'); });
 })();
+
+/* ══ v27: novičke s kodo za popust ══ */
+var NOV={odst:10,prag:50};
+var KODA=(function(){ try{ return JSON.parse(localStorage.getItem('najs-koda')||'null')||{}; }catch(e){ return {}; } })();
+function shraniKodo(){ try{ if(KODA&&KODA.koda) localStorage.setItem('najs-koda',JSON.stringify(KODA)); else localStorage.removeItem('najs-koda'); }catch(e){} }
+function lsBeri(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsPisi(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function novFn(telo){
+  return fetch(SB_URL+'/functions/v1/novicke',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify(telo)})
+    .then(function(r){ return r.json(); });
+}
+function popustZnesek(){
+  var v=vsotaIzdelkov();
+  return (KODA&&KODA.ok&&v>=Number(KODA.prag||NOV.prag))?Math.round(v*Number(KODA.odst||NOV.odst))/100:0;
+}
+function novOdpri(stanje,podatki){
+  var oz=$('#novOzadje'), v=$('#novVsebina'), h='';
+  if(stanje==='poslano'){
+    h='<h2>Skoraj končano!</h2><p>Na vaš e-naslov sem poslala sporočilo s povezavo za potrditev. Ko prijavo potrdite, prejmete kodo za <b>'+NOV.odst+'&nbsp;% popusta</b>.</p>'
+     +'<p class="nov-pogoj">Če sporočila ne najdete, poglejte še med oglasi ali v vsiljeno pošto.</p><button type="button" class="nov-gumb" data-nov-zapri>V redu</button>';
+  } else if(stanje==='koda'){
+    h='<h2>Hvala, prijava je potrjena!</h2>'
+     +(podatki.koda?'<p>Vaša koda za <b>'+podatki.odstotek+'&nbsp;% popusta</b> pri nakupu izdelkov nad '+eur(podatki.prag)+':</p><div class="nov-koda"><code>'+esc(podatki.koda)+'</code><button type="button" data-nov-kopiraj="'+esc(podatki.koda)+'">Kopiraj</button></div>'
+       +'<p class="nov-pogoj">Kodo sem shranila tudi v vašo košarico, poslala pa sem vam jo še po e-pošti. Uporabite jo lahko enkrat.</p>'
+       :'<p>Kodo za popust ste že uporabili pri enem od prejšnjih nakupov. Hvala, da ostajate z mano!</p>')
+     +'<button type="button" class="nov-gumb" data-nov-zapri>V trgovino</button>';
+  } else if(stanje==='odjava'){
+    h='<h2>'+(podatki.ok?'Odjava je uspela':'Odjava ni uspela')+'</h2><p>'+(podatki.ok?'Novičk vam ne bom več pošiljala. Če si premislite, se lahko kadarkoli znova prijavite.':'Povezava ni veljavna. Pišite mi na frizerskistudionajs@gmail.com in vas odjavim ročno.')+'</p><button type="button" class="nov-gumb" data-nov-zapri>V trgovino</button>';
+  } else if(stanje==='napaka'){
+    h='<h2>Nekaj je šlo narobe</h2><p>'+esc(podatki||'Povezava ni veljavna ali je potekla.')+'</p><button type="button" class="nov-gumb" data-nov-zapri>Zapri</button>';
+  } else {
+    h='<h2><b>'+NOV.odst+'&nbsp;% popusta</b> ob prijavi na novičke</h2>'
+     +'<p>Prijavite se na moje novičke in prejmite kodo za <b>'+NOV.odst+'&nbsp;% popusta pri nakupu nad '+eur(NOV.prag)+'</b>. Občasno vam pošljem nasvete za nego las, novosti iz salona in ponudbe.</p>'
+     +'<p class="nov-pogoj">Kodo lahko vsaka stranka uporabi enkrat.</p>'
+     +'<form id="novObrazec" novalidate><input type="text" name="ime" placeholder="Ime" autocomplete="given-name" maxlength="60"><input type="email" name="email" placeholder="E-naslov" autocomplete="email" required>'
+     +'<button type="submit" class="nov-gumb">Prijava na novičke</button><p class="nov-msg" id="novMsg" role="alert"></p></form>'
+     +'<p class="nov-drobno">S prijavo se strinjate, da vam po e-pošti pošiljam novice in ponudbe. Prijavo potrdite v e-pošti, odjavite pa se lahko kadarkoli. Več v <a href="https://najs.si/zasebnost.html" target="_blank" rel="noopener">pravilniku o zasebnosti</a>.</p>';
+  }
+  v.innerHTML=h; oz.hidden=false; requestAnimationFrame(function(){ oz.classList.add('on'); });
+  NOV.odprto=true;
+  var f=v.querySelector('input[name=email]'); if(f && stanje==null && window.innerWidth>640) setTimeout(function(){ f.focus(); },250);
+}
+function novZapri(){
+  var oz=$('#novOzadje'); oz.classList.remove('on'); setTimeout(function(){ oz.hidden=true; },220);
+  if(NOV.odprto && lsBeri('najs-novicke')!=='prijavljen') lsPisi('najs-novicke-zaprto',String(Date.now()));
+  NOV.odprto=false;
+}
+$('#predal').addEventListener('input',function(e){ if(e.target.id==='kodaVnos'){ KODA=KODA&&KODA.ok?KODA:{vnos:e.target.value}; } });
+$('#novOzadje').addEventListener('click',function(e){
+  if(e.target.id==='novOzadje'||e.target.closest('#novZapri')||e.target.closest('[data-nov-zapri]')){ novZapri(); return; }
+  var kp=e.target.closest('[data-nov-kopiraj]');
+  if(kp){ try{ navigator.clipboard.writeText(kp.dataset.novKopiraj); kp.textContent='Kopirano ✓'; }catch(x){} }
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!$('#novOzadje').hidden) novZapri(); });
+$('#novOzadje').addEventListener('submit',function(e){
+  if(e.target.id!=='novObrazec') return; e.preventDefault();
+  var f=e.target, em=f.email.value.trim(), msg=$('#novMsg'), g=f.querySelector('button');
+  if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(em)){ msg.textContent='Vpišite veljaven e-naslov.'; f.email.focus(); return; }
+  if(typeof PREVERI!=='undefined'&&PREVERI.email){ var r=PREVERI.email(em); if(r&&r.stanje==='opozorilo'&&r.predlog&&f.dataset.opoz!==em){ f.dataset.opoz=em; msg.textContent=r.sporocilo+' Če je naslov pravilen, kliknite še enkrat.'; return; } }
+  msg.textContent=''; g.disabled=true; g.textContent='Pošiljam …';
+  novFn({akcija:'prijava',ime:f.ime.value.trim(),email:em}).then(function(d){
+    if(d&&d.ok&&d.stanje==='ze-prijavljen'){ lsPisi('najs-novicke','prijavljen'); g.disabled=false; g.textContent='Prijava na novičke'; msg.textContent='Ta e-naslov je že prijavljen – kodo ste prejeli v e-pošti ob potrditvi.'; return; }
+    if(d&&d.ok){ lsPisi('najs-novicke','poslano'); novOdpri('poslano'); return; }
+    g.disabled=false; g.textContent='Prijava na novičke';
+    msg.textContent=(d&&d.napaka==='email')?'Vpišite veljaven e-naslov.':'Prijava trenutno ni uspela. Poskusite znova čez nekaj minut.';
+  }).catch(function(){ g.disabled=false; g.textContent='Prijava na novičke'; msg.textContent='Povezava ni uspela. Preverite internet in poskusite znova.'; });
+});
+$('#novNoga').addEventListener('click',function(e){ e.preventDefault(); novOdpri(); });
+/* samodejni prikaz: po 15 s ali ko se pomaknete čez tretjino strani; ne, če je okno že zaprto v zadnjih 14 dneh ali ste prijavljeni */
+(function(){
+  var p=lsBeri('najs-novicke'), z=Number(lsBeri('najs-novicke-zaprto')||0);
+  if(p==='prijavljen'||p==='poslano'||(Date.now()-z)<14*864e5) return;
+  var pokazano=false;
+  function poskusi(){
+    if(pokazano) return;
+    var zaseden=!$('#predal').hidden||($('#okno')&&$('#okno').classList.contains('on'))||$('#privola').classList.contains('show')||!$('#novOzadje').hidden;
+    if(zaseden){ setTimeout(poskusi,5000); return; }
+    pokazano=true; window.removeEventListener('scroll',naScroll); novOdpri();
+  }
+  function naScroll(){ if(window.scrollY>document.body.scrollHeight*0.33) poskusi(); }
+  setTimeout(poskusi,15000); window.addEventListener('scroll',naScroll,{passive:true});
+})();
+/* povezave iz e-pošte: ?novicke=potrdi&z=… ali ?novicke=odjava&z=… */
+(function(){
+  var q=new URLSearchParams(location.search), a=q.get('novicke'), z=q.get('z');
+  if(!a||!z) return;
+  try{ history.replaceState(null,'',location.pathname+location.hash); }catch(e){}
+  if(a==='potrdi'){
+    novFn({akcija:'potrdi',zeton:z}).then(function(d){
+      if(!d||!d.ok){ novOdpri('napaka'); return; }
+      lsPisi('najs-novicke','prijavljen');
+      if(d.koda){ KODA={koda:d.koda,odst:d.odstotek,prag:d.prag,ok:true}; shraniKodo(); }
+      novOdpri('koda',d);
+    }).catch(function(){ novOdpri('napaka','Povezava ni uspela. Osvežite stran in poskusite znova.'); });
+  } else if(a==='odjava'){
+    novFn({akcija:'odjava',zeton:z}).then(function(d){ novOdpri('odjava',d||{}); }).catch(function(){ novOdpri('odjava',{}); });
+  }
+})();
+/* nastavitve popusta (če stolpcev še ni, ostane 10 % nad 50 €) */
+if(sb) sb.from('nastavitve_trgovina').select('novicke_popust,novicke_prag').limit(1).then(function(r){
+  var n=r&&r.data&&r.data[0]; if(n){ if(n.novicke_popust!=null) NOV.odst=Number(n.novicke_popust); if(n.novicke_prag!=null) NOV.prag=Number(n.novicke_prag); }
+});
 
 osveziStevec(); nalozi();
 })();
