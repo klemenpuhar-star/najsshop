@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v26-2026-11-18 (gumb »Na spletno stran frizerskega studia Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v26-2026-11-18 (gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -48,7 +48,7 @@ img{max-width:100%;display:block}
 .nazaj{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 14px 0 10px;border:1.5px solid var(--crta);border-radius:999px;
   background:var(--belo);color:var(--navy);font-size:.86rem;font-weight:500;text-decoration:none;white-space:nowrap;flex-shrink:0}
 .nazaj:hover{border-color:var(--navy)}
-.nazaj-kratko,.nazaj-srednje{display:none}
+.nazaj-kratko,.nazaj-srednje,.nazaj-mini{display:none}
 @media (max-width:1180px){ .nazaj-dolgo{display:none} .nazaj-srednje{display:inline} }
 
 /* ── uvod ── */
@@ -393,6 +393,7 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
   .potrebe{margin-top:14px}
   .predlogi{position:fixed;left:10px;right:10px;top:auto;margin-top:6px}
 }
+@media (max-width:370px){ .nazaj-kratko{display:none} .nazaj-mini{display:inline} }
 </style>
 </head>
 <body>
@@ -402,7 +403,7 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
     <a class="znamka" href="https://najs.si/" aria-label="Frizerski studio Najs – domača stran">
       <img src="logo.png" alt="Frizerski studio Najs">
     </a>
-    <a class="nazaj" href="https://najs.si/" title="Na spletno stran frizerskega studia Najs (najs.si)" aria-label="Na spletno stran frizerskega studia Najs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span class="nazaj-dolgo">Na spletno stran frizerskega studia Najs</span><span class="nazaj-srednje">Na stran studia Najs</span><span class="nazaj-kratko">Studio Najs</span></a>
+    <a class="nazaj" href="https://najs.si/" title="Na spletno stran frizerskega studia Najs (najs.si)" aria-label="Na spletno stran frizerskega studia Najs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span class="nazaj-dolgo">Frizerski studio Najs</span><span class="nazaj-srednje">Frizerski studio Najs</span><span class="nazaj-kratko">Frizerski studio Najs</span><span class="nazaj-mini">Studio Najs</span></a>
     <div class="iskanje" role="search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <label class="skrito" for="isci">Išči izdelke</label>
