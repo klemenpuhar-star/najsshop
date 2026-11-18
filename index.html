@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v30-2026-11-18 (naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v31-2026-11-18 (placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -244,6 +244,9 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 .uspeh .kljukica{width:56px;height:56px;border-radius:50%;background:var(--ploscica);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
 .uspeh h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin:0 0 6px}
 .uspeh p{margin:0 0 12px;color:#3d5260}
+#sumup-card{margin:6px 0 4px;min-height:60px}
+.kart-stanje{font-size:.9rem;margin:8px 0}
+.kart-stanje.nap{color:#a23b3b;font-weight:600}
 .navodila{background:var(--ozadje);border:1px solid var(--crta);border-radius:var(--r-mal);padding:14px;margin:14px 0;font-size:.9rem}
 .navodila dt{color:var(--siva);font-size:.78rem;margin-top:8px}
 .navodila dd{margin:0;font-weight:600}
@@ -757,7 +760,9 @@ var NAMEN={'Dreamfix':'Lak za lase z močnim oprijemom','Easy Smooth':'Gladilni 
 
 /* ── stanje ── */
 var ARTIKLI=[], KARTICE=[], PO_ID={};
-var NAST={cena_dostave:3.90, prag:50, flik:null, povzetje:null};
+var NAST={cena_dostave:3.90, prag:50, flik:null, povzetje:null, kartica:false};
+/* v31: preizkus placila s kartico pred vklopom: najsshop.si/?kartica=test (velja do zaprtja zavihka) */
+var KART_TEST=false; try{ if(new URLSearchParams(location.search).get('kartica')==='test') sessionStorage.setItem('najs-kartica-test','1'); KART_TEST=sessionStorage.getItem('najs-kartica-test')==='1'; }catch(e){}
 var F={potreba:'',vrsta:'',linija:'',isci:'',razvrsti:'priporoceno'};
 var SITUACIJE_VRSTE=['Krtače','Dodatki'];
 var KOS=beriKosarico();
@@ -773,7 +778,7 @@ function nalozi(){
   Promise.all([
     sb.from('artikli').select('id,naziv,cena,opis,slika_url,kategorija,velikost,zaloga,skupina,barva,barva_hex,vrsta,potrebe,priporoceno,sort_order,kljucna_sestavina,zakaj,navodila')
       .eq('aktiven',true).eq('prikazi_na_spletu',true).order('sort_order',{ascending:true}),
-    sb.from('nastavitve_trgovina').select('cena_dostave,prag_brezplacna_dostava,flik_stevilka,doplacilo_povzetje').limit(1)
+    sb.from('nastavitve_trgovina').select('cena_dostave,prag_brezplacna_dostava,flik_stevilka,doplacilo_povzetje,kartica_vklopljena').limit(1)
   ]).then(function(r){
     if(r[0].error){ napakaNalaganja(); return; }
     ARTIKLI=r[0].data||[];
@@ -781,7 +786,9 @@ function nalozi(){
     if(n.cena_dostave!=null) NAST.cena_dostave=Number(n.cena_dostave);
     if(n.prag_brezplacna_dostava!=null) NAST.prag=Number(n.prag_brezplacna_dostava);
     NAST.flik=n.flik_stevilka||null; NAST.povzetje=(n.doplacilo_povzetje!=null)?Number(n.doplacilo_povzetje):null;
-    if(NAST.povzetje!=null) $('#zagPlacilo').textContent='Plačilo z nakazilom (QR koda) ali po povzetju';
+    NAST.kartica=!!n.kartica_vklopljena||KART_TEST;
+    if(NAST.kartica) $('#zagPlacilo').textContent='Plačilo s kartico, z nakazilom (QR koda)'+(NAST.povzetje!=null?' ali po povzetju':'');
+    else if(NAST.povzetje!=null) $('#zagPlacilo').textContent='Plačilo z nakazilom (QR koda) ali po povzetju';
     $('#zagDostava').textContent='Dostava po pošti '+eur(NAST.cena_dostave)+(NAST.prag?(', brezplačna nad '+eur(NAST.prag)):'');
     ARTIKLI.forEach(function(a){ PO_ID[a.id]=a; });
     KOS=KOS.filter(function(p){ return PO_ID[p.id]; }); shraniKosarico();
@@ -1139,7 +1146,7 @@ $('#obvOdpri').addEventListener('click',function(){ $('#obvestilo').classList.re
 
 var PODATKI={dostava:'prevzem',placilo:'nakazilo',ime:'',telefon:'',email:'',naslov:'',postna:'',kraj:'',posta:'',opomba:''};
 function odpriKosarico(){
-  KORAK=1; risiKosarico(); var p=$('#predal'); p.hidden=false;
+  if(KARTICA&&!KARTICA.koncano){ KORAK=3; risiKosarico(); placajKartico(); } else { KORAK=1; risiKosarico(); } var p=$('#predal'); p.hidden=false;
   requestAnimationFrame(function(){ p.classList.add('on'); $('#zatemni').classList.add('on'); });
   document.body.style.overflow='hidden'; setTimeout(function(){ var b=$('[data-zapri-k]'); if(b) b.focus(); },60);
 }
@@ -1161,7 +1168,7 @@ function trakDostave(){
 }
 function risiKosarico(){
   ['kor1','kor2','kor3'].forEach(function(id,i){ $('#'+id).classList.toggle('on', i<KORAK); });
-  $('#pNaslov').textContent=KORAK===1?'Košarica':(KORAK===2?'Dostava in podatki':'Naročilo oddano');
+  $('#pNaslov').textContent=KORAK===1?'Košarica':(KORAK===2?'Dostava in podatki':((KARTICA&&!KARTICA.koncano)?'Plačilo s kartico':'Naročilo oddano'));
   if(KORAK===1) korak1(); else if(KORAK===2) korak2();
 }
 function korak1(){
@@ -1243,12 +1250,13 @@ function korak2(){
 /* v13: nacini placila – nakazilo z UPN QR vedno, Flik samo ce je v adminu vpisana stevilka,
    povzetje samo pri dostavi po posti in ce je v adminu vpisano doplacilo */
 function placilaHtml(){
-  var P=PODATKI, moz=['nakazilo'];
+  var P=PODATKI, moz=NAST.kartica?['kartica','nakazilo']:['nakazilo'];
   if(P.dostava==='prevzem') moz.push('ob_prevzemu');
   if(NAST.flik) moz.push('flik');
   if(P.dostava==='posta' && NAST.povzetje!=null) moz.push('povzetje');
   if(moz.indexOf(P.placilo)<0) P.placilo='nakazilo';
-  var opis={nakazilo:['Nakazilo – QR koda za mobilno banko','Po oddaji prejmete QR kodo: skenirate jo v aplikaciji svoje banke in plačilo je izpolnjeno.'],
+  var opis={kartica:['Plačilo s kartico','Visa, Mastercard ali Maestro – plačate takoj po oddaji naročila, varno prek SumUp.'],
+    nakazilo:['Nakazilo – QR koda za mobilno banko','Po oddaji prejmete QR kodo: skenirate jo v aplikaciji svoje banke in plačilo je izpolnjeno.'],
     flik:['Flik','Hitro plačilo z mobilno banko na mojo številko.'],
     povzetje:['Po povzetju – doplačilo '+eur(NAST.povzetje||0),'Plačate poštarju ob prevzemu paketa.'],
     ob_prevzemu:['Plačilo ob prevzemu v salonu','Plačate z gotovino ali kartico, ko pridete po naročilo – po mojem obvestilu, da je pripravljeno.']};
@@ -1405,15 +1413,78 @@ function oddaj(gumb){
     }
     var vsebina=KOS.slice(); KOS=[]; shraniKosarico();
     if(d.popust>0){ KODA={}; shraniKodo(); }
+    if(P.placilo==='kartica'){ KARTICA={d:d,P:JSON.parse(JSON.stringify(P)),vsebina:vsebina,ts:Date.now()}; shraniKartico(); KORAK=3; risiKosarico(); placajKartico(); return; }
     KORAK=3; risiKosarico(); korak3(d,P,vsebina);
   }).catch(function(){
     opo.textContent='Povezava ni uspela. Preverite internet in poskusite znova.'; opo.classList.add('on'); gumb.disabled=false; povzetek2();
   });
 }
+/* v31: placilo s kartico (SumUp Card Widget). Narocilo je ze oddano (status novo); placilo potrdi streznik pri SumUp. */
+var KARTICA=null, KART_WIDGET=null, KART_SDK=null;
+function shraniKartico(){ try{ if(KARTICA&&!KARTICA.koncano) localStorage.setItem('najs-kartica',JSON.stringify(KARTICA)); else localStorage.removeItem('najs-kartica'); }catch(e){} }
+try{ var _k=JSON.parse(localStorage.getItem('najs-kartica')||'null'); if(_k&&_k.d&&Date.now()-_k.ts<6*3600e3) KARTICA=_k; else localStorage.removeItem('najs-kartica'); }catch(e){}
+function sumupKlic(akcija){
+  return fetch(SB_URL+'/functions/v1/sumup',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},
+    body:JSON.stringify({akcija:akcija,id:KARTICA.d.id,zeton:KARTICA.d.zeton})}).then(function(r){ return r.json(); });
+}
+function naloziSumup(){
+  if(window.SumUpCard) return Promise.resolve();
+  if(KART_SDK) return KART_SDK;
+  KART_SDK=new Promise(function(ok,nap){ var s=document.createElement('script'); s.src='https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js';
+    s.onload=ok; s.onerror=function(){ KART_SDK=null; nap(); }; document.head.appendChild(s); });
+  return KART_SDK;
+}
+function kartStanje(t,napaka){ var el=$('#kartStanje'); if(el){ el.textContent=t||''; el.className='kart-stanje'+(napaka?' nap':''); } }
+function kartUspeh(){
+  if(!KARTICA) return; var k=KARTICA; k.koncano=true; shraniKartico(); KARTICA=null;
+  try{ if(KART_WIDGET&&KART_WIDGET.unmount) KART_WIDGET.unmount(); }catch(e){} KART_WIDGET=null;
+  KORAK=3; risiKosarico(); korak3(k.d,k.P,k.vsebina);
+}
+function kartPotrdi(poskus){
+  kartStanje('Preverjam plačilo …');
+  sumupKlic('potrdi').then(function(o){
+    if(o&&o.ok) return kartUspeh();
+    if((poskus||0)<4) return setTimeout(function(){ kartPotrdi((poskus||0)+1); },1500);
+    kartStanje('Plačila še ne vidim potrjenega. Če je bil znesek bremenjen, prejmete potrditev po e-pošti – ali me pokličite na 031 217 361.',true);
+    kartGumbi(true);
+  }).catch(function(){ if((poskus||0)<4) setTimeout(function(){ kartPotrdi((poskus||0)+1); },2000); else { kartStanje('Povezava ni uspela. Poskusite znova.',true); kartGumbi(true); } });
+}
+function kartGumbi(ponovno){
+  $('#pDno').innerHTML=(ponovno?'<button type="button" class="gumb-glavni" data-kart-znova>Poskusi znova</button>':'')
+    +'<button type="button" class="gumb-drugi" data-zapri-placilo>Zapri – plačam pozneje</button>'
+    +'<button type="button" class="gumb-drugi" data-opusti-placilo>Ne želim plačati s kartico – nazaj v košarico</button>';
+}
+function placajKartico(){
+  if(!KARTICA) return;
+  var d=KARTICA.d, sklic=String(d.id||'').slice(0,8).toUpperCase();
+  $('#pTelo').innerHTML='<div class="uspeh" style="text-align:left"><h3>Plačilo s kartico</h3>'
+    +'<p>Naročilo <b>'+sklic+'</b> je oddano. Za zaključek plačajte <b>'+eur(d.skupaj)+'</b> s kartico.</p>'
+    +'<div id="sumup-card"></div><p id="kartStanje" class="kart-stanje">Nalagam varen obrazec za plačilo …</p>'
+    +'<p style="font-size:.8rem;color:var(--siva,#5f6d75)">Plačilo obdela SumUp. Podatkov o kartici ne vidim in jih ne shranjujem. Vprašanja: <a href="tel:+38631217361">031 217 361</a>.</p></div>';
+  kartGumbi(false);
+  Promise.all([naloziSumup(), sumupKlic('checkout')]).then(function(r){
+    var o=r[1]||{};
+    if(o.ok&&o.stanje==='placano') return kartUspeh();
+    if(!o.ok||!o.checkoutId){ kartStanje('Plačila trenutno ni mogoče začeti. Poskusite znova ali me pokličite na 031 217 361.',true); kartGumbi(true); return; }
+    kartStanje('');
+    try{ if(KART_WIDGET&&KART_WIDGET.unmount) KART_WIDGET.unmount(); }catch(e){}
+    $('#sumup-card').innerHTML='';
+    KART_WIDGET=SumUpCard.mount({ id:'sumup-card', checkoutId:o.checkoutId, locale:'sl-SI', email:KARTICA.P.email||undefined,
+      showEmail:false, showFooter:true,
+      onResponse:function(tip,telo){
+        if(tip==='success') kartPotrdi(0);
+        else if(tip==='sent') kartStanje('Obdelujem plačilo …');
+        else if(tip==='auth-screen') kartStanje('Potrdite plačilo v aplikaciji ali obrazcu svoje banke.');
+        else if(tip==='fail'||tip==='error'){ kartStanje('Plačilo ni uspelo. Preverite podatke kartice ali poskusite z drugo kartico.',true); kartGumbi(true); }
+      }});
+  }).catch(function(){ kartStanje('Obrazca za plačilo ni bilo mogoče naložiti. Preverite internet in poskusite znova.',true); kartGumbi(true); });
+}
 function korak3(d,P,vsebina){
   var sklic=String(d.id||'').slice(0,8).toUpperCase(), znesek=eur(d.skupaj);
   var nav='';
-  if(P.placilo==='flik'){
+  if(P.placilo==='kartica'){
+    nav='<div class="navodila">Plačilo s kartico je uspelo: <b>'+znesek+'</b>.</div>';
+  } else if(P.placilo==='flik'){
     nav=d.flik_stevilka
       ? '<dl class="navodila"><dt>Plačilo s Flikom na številko</dt><dd>'+esc(d.flik_stevilka)+'</dd><dt>Znesek</dt><dd>'+znesek+'</dd><dt>Namen</dt><dd>Naročilo '+sklic+'</dd></dl>'
       : '<div class="navodila">Podatke za plačilo s Flikom vam pošljem po SMS-u v najkrajšem možnem času. Znesek: <b>'+znesek+'</b>.</div>';
@@ -1431,10 +1502,10 @@ function korak3(d,P,vsebina){
   }
   var dost=P.dostava==='prevzem'
     ? 'Ko bo naročilo pripravljeno, vam pošljem SMS'+(P.email?' in e-pošto':'')+'. <b>Prosim, pridite v salon šele po obvestilu</b> – Cesta talcev 3B, Škofja Loka.'
-    : (P.placilo==='povzetje'?'Paket pošljem v nekaj dneh':'Paket pošljem po prejemu plačila')+' na naslov '+esc(P.naslov)+', '+esc(P.posta)+'.';
+    : ((P.placilo==='povzetje'||P.placilo==='kartica')?'Paket pošljem v nekaj dneh':'Paket pošljem po prejemu plačila')+' na naslov '+esc(P.naslov)+', '+esc(P.posta)+'.';
   $('#pTelo').innerHTML='<div class="uspeh"><div class="kljukica"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2c4251" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'
-    +'<h3>'+(P.placilo==='povzetje'?'Hvala, naročilo je potrjeno':'Hvala, naročilo je oddano')+'</h3><p>Številka naročila: <b>'+sklic+'</b>'+(P.email?'<br>'+(P.placilo==='povzetje'?'Potrditev naročila prejmete na ':(P.placilo==='ob_prevzemu'?'Povzetek naročila prejmete na ':'Navodila za plačilo prejmete na '))+esc(P.email)+'.':'')+'</p>'
-    +nav+((P.placilo==='povzetje'||P.placilo==='ob_prevzemu')?'':'<p>Naročilo potrdim, ko prejmem vaše plačilo – takrat prejmete potrditev.</p>')+'<p>'+dost+'</p><p>Če imate vprašanje, me pokličite na <a href="tel:+38631217361">031 217 361</a>.</p></div>';
+    +'<h3>'+((P.placilo==='povzetje'||P.placilo==='kartica')?'Hvala, naročilo je potrjeno':'Hvala, naročilo je oddano')+'</h3><p>Številka naročila: <b>'+sklic+'</b>'+(P.email?'<br>'+((P.placilo==='povzetje'||P.placilo==='kartica')?'Potrditev naročila prejmete na ':(P.placilo==='ob_prevzemu'?'Povzetek naročila prejmete na ':'Navodila za plačilo prejmete na '))+esc(P.email)+'.':'')+'</p>'
+    +nav+((P.placilo==='povzetje'||P.placilo==='ob_prevzemu'||P.placilo==='kartica')?'':'<p>Naročilo potrdim, ko prejmem vaše plačilo – takrat prejmete potrditev.</p>')+'<p>'+dost+'</p><p>Če imate vprašanje, me pokličite na <a href="tel:+38631217361">031 217 361</a>.</p></div>';
   $('#pDno').innerHTML='<button type="button" class="gumb-glavni" data-nadaljuj-nakup>Nazaj v trgovino</button>';
 }
 $('#predal').addEventListener('click',function(e){
@@ -1443,6 +1514,15 @@ $('#predal').addEventListener('click',function(e){
   var o=e.target.closest('[data-odstrani-id]'); if(o){ KOS=KOS.filter(function(x){ return x.id!==o.dataset.odstraniId; }); shraniKosarico(); korak1(); return; }
   if(e.target.closest('[data-naprej]')){ KORAK=2; risiKosarico(); $('#pTelo').scrollTop=0; return; }
   if(e.target.closest('[data-nazaj]')){ KORAK=1; risiKosarico(); return; }
+  if(e.target.closest('[data-kart-znova]')){ placajKartico(); return; }
+  if(e.target.closest('[data-zapri-placilo]')){ zapriKosarico(); return; }
+  if(e.target.closest('[data-opusti-placilo]')){
+    /* naročilo ostane neplačano (Nataša ga v adminu prekliče); izdelki se vrnejo v košarico, da lahko izberete drug način plačila */
+    try{ if(KART_WIDGET&&KART_WIDGET.unmount) KART_WIDGET.unmount(); }catch(e2){} KART_WIDGET=null;
+    if(KARTICA&&KARTICA.vsebina&&!KOS.length){ KOS=KARTICA.vsebina; shraniKosarico(); }
+    KARTICA=null; try{ localStorage.removeItem('najs-kartica'); }catch(e2){}
+    KORAK=1; risiKosarico(); return;
+  }
   if(e.target.closest('[data-oddaj]')){ oddaj(e.target.closest('[data-oddaj]')); return; }
   if(e.target.closest('[data-koda-odstrani]')){ KODA={}; shraniKodo(); osveziDno(); return; }
   if(e.target.closest('[data-koda-uporabi]')){
