@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v34-2026-11-18 (naslov stranke viden vedno; pri posti obvezen, pri prevzemu v salonu neobvezen; v33: naslov viden tudi pri prevzemu; v32: brez primera v polju za kodo; v31: placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v36-2026-11-18 (obvezna polja oznacena z zvezdico, naslov z zvezdico samo pri posti; v35: placilo s kartico: besedilo Visa, Mastercard ali Maestro + znacke kartic; v34: naslov stranke viden vedno; pri posti obvezen, pri prevzemu v salonu neobvezen; v33: naslov viden tudi pri prevzemu; v32: brez primera v polju za kodo; v31: placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -244,6 +244,11 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 .uspeh .kljukica{width:56px;height:56px;border-radius:50%;background:var(--ploscica);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
 .uspeh h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin:0 0 6px}
 .uspeh p{margin:0 0 12px;color:#3d5260}
+.obv{color:var(--koral-txt);font-weight:600;margin-left:2px}
+.obv-leg{font-size:.72rem;font-weight:400;color:var(--siva);margin-left:6px}
+#naslovBlok:not(.obvezno) .obv{display:none}
+.kart-znacke{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.kart-znacka{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--crta);border-radius:6px;padding:3px 8px;font-size:.75rem;font-weight:600;color:var(--navy);background:#fff;line-height:1.2}
 #sumup-card{margin:6px 0 4px;min-height:60px}
 .kart-stanje{font-size:.9rem;margin:8px 0}
 .kart-stanje.nap{color:#a23b3b;font-weight:600}
@@ -1202,15 +1207,15 @@ function korak2(){
    +'<label class="izbira"><input type="radio" name="dostava" value="prevzem"'+(P.dostava==='prevzem'?' checked':'')+'><div><b>Prevzem v salonu – brezplačno</b><small>Cesta talcev 3B, Škofja Loka. Ko bo naročilo pripravljeno, vam pošljem SMS – prosim, pridite šele po obvestilu.</small></div></label>'
    +'<label class="izbira"><input type="radio" name="dostava" value="posta"'+(P.dostava==='posta'?' checked':'')+'><div><b>Dostava po pošti – '+(NAST.prag&&vsotaIzdelkov()>=NAST.prag?'brezplačno':eur(NAST.cena_dostave))+'</b><small>'+(NAST.povzetje!=null?'Plačate vnaprej ali po povzetju.':'Paket pošljem po prejemu plačila.')+'</small></div></label>'
    +'</div></fieldset>'
-   +'<fieldset><legend>Vaši podatki</legend>'
-   +polje('ime','Ime in priimek','text',P.ime,'name','Vpišite ime in priimek.')
-   +polje('telefon','Telefon','tel',P.telefon,'tel','Vpišite telefonsko številko, da vas lahko obvestim.')
-   +polje('email','E-pošta <small>(za navodila in potrditev naročila)</small>','email',P.email,'email','E-naslov ni pravilen.')
-   +'<div id="naslovBlok"><p class="drobno" id="naslovNeobv"'+(P.dostava==='posta'?' hidden':'')+' style="margin:2px 0 6px">Naslov pri prevzemu v salonu ni obvezen.</p>'
-   +polje('naslov','Ulica in hišna številka','text',P.naslov,'street-address','Vpišite svoj naslov.')
+   +'<fieldset><legend>Vaši podatki <span class="obv-leg">* obvezno</span></legend>'
+   +polje('ime','Ime in priimek<span class="obv" aria-hidden="true">*</span>','text',P.ime,'name','Vpišite ime in priimek.')
+   +polje('telefon','Telefon<span class="obv" aria-hidden="true">*</span>','tel',P.telefon,'tel','Vpišite telefonsko številko, da vas lahko obvestim.')
+   +polje('email','E-pošta<span class="obv" aria-hidden="true">*</span> <small>(za navodila in potrditev naročila)</small>','email',P.email,'email','E-naslov ni pravilen.')
+   +'<div id="naslovBlok"'+(P.dostava==='posta'?' class="obvezno"':'')+'>'
+   +polje('naslov','Ulica in hišna številka<span class="obv" aria-hidden="true">*</span>','text',P.naslov,'street-address','Vpišite svoj naslov.')
    +'<div class="polje-vrsta">'
-   +'<div class="polje polje-postna"><label for="f_postna">Poštna št.</label><input id="f_postna" name="postna" type="text" inputmode="numeric" maxlength="4" value="'+esc(P.postna)+'" autocomplete="postal-code"><span class="napaka-p"></span></div>'
-   +'<div class="polje polje-kraj"><label for="f_kraj">Kraj</label><input id="f_kraj" name="kraj" type="text" value="'+esc(P.kraj)+'" autocomplete="address-level2"><span class="napaka-p"></span></div>'
+   +'<div class="polje polje-postna"><label for="f_postna">Poštna št.<span class="obv" aria-hidden="true">*</span></label><input id="f_postna" name="postna" type="text" inputmode="numeric" maxlength="4" value="'+esc(P.postna)+'" autocomplete="postal-code"><span class="napaka-p"></span></div>'
+   +'<div class="polje polje-kraj"><label for="f_kraj">Kraj<span class="obv" aria-hidden="true">*</span></label><input id="f_kraj" name="kraj" type="text" value="'+esc(P.kraj)+'" autocomplete="address-level2"><span class="napaka-p"></span></div>'
    +'</div>'
    +'</div></fieldset>'
    +'<fieldset><legend>Plačilo</legend><div class="izbira-kartic" id="placilaIzbira">'+placilaHtml()+'</div></fieldset>'
@@ -1221,7 +1226,7 @@ function korak2(){
   t.innerHTML=h; povzetek2();
   var f=$('#obrazec');
   f.addEventListener('change',function(e){
-    if(e.target.name==='dostava'){  PODATKI.dostava=e.target.value; $('#naslovNeobv').hidden=(e.target.value==='posta'); if(e.target.value!=='posta') ['naslov','postna','kraj'].forEach(function(n){ var p=$('#f_'+n); if(p&&p.closest('.polje')) p.closest('.polje').classList.remove('napaka'); }); $('#placilaIzbira').innerHTML=placilaHtml(); povzetek2(); }
+    if(e.target.name==='dostava'){  PODATKI.dostava=e.target.value; $('#naslovBlok').classList.toggle('obvezno',e.target.value==='posta'); if(e.target.value!=='posta') ['naslov','postna','kraj'].forEach(function(n){ var p=$('#f_'+n); if(p&&p.closest('.polje')) p.closest('.polje').classList.remove('napaka'); }); $('#placilaIzbira').innerHTML=placilaHtml(); povzetek2(); }
     if(e.target.name==='placilo'){ PODATKI.placilo=e.target.value; povzetek2(); }
   });
   f.addEventListener('input',function(e){ if(e.target.name&&PODATKI.hasOwnProperty(e.target.name)){ PODATKI[e.target.name]=e.target.value; var p=e.target.closest('.polje'); if(p) p.classList.remove('napaka'); } });
@@ -1249,18 +1254,21 @@ function korak2(){
 }
 /* v13: nacini placila – nakazilo z UPN QR vedno, Flik samo ce je v adminu vpisana stevilka,
    povzetje samo pri dostavi po posti in ce je v adminu vpisano doplacilo */
+/* v35: nevtralne znacke kartic (brez uradnih logotipov) */
+var KARTICE_HTML='<span class="kart-znacke" aria-hidden="true">'+['Visa','Mastercard','Maestro'].map(function(n){
+  return '<span class="kart-znacka"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.3"><rect x=".65" y=".65" width="14.7" height="10.7" rx="2"/><path d="M.7 4h14.6"/><path d="M3 8.3h3"/></svg>'+n+'</span>'; }).join('')+'</span>';
 function placilaHtml(){
   var P=PODATKI, moz=NAST.kartica?['kartica','nakazilo']:['nakazilo'];
   if(P.dostava==='prevzem') moz.push('ob_prevzemu');
   if(NAST.flik) moz.push('flik');
   if(P.dostava==='posta' && NAST.povzetje!=null) moz.push('povzetje');
   if(moz.indexOf(P.placilo)<0) P.placilo='nakazilo';
-  var opis={kartica:['Plačilo s kartico','Visa, Mastercard ali Maestro – plačate takoj po oddaji naročila, varno prek SumUp.'],
+  var opis={kartica:['Plačilo s kartico','Visa, Mastercard ali Maestro.'],
     nakazilo:['Nakazilo – QR koda za mobilno banko','Po oddaji prejmete QR kodo: skenirate jo v aplikaciji svoje banke in plačilo je izpolnjeno.'],
     flik:['Flik','Hitro plačilo z mobilno banko na mojo številko.'],
     povzetje:['Po povzetju – doplačilo '+eur(NAST.povzetje||0),'Plačate poštarju ob prevzemu paketa.'],
     ob_prevzemu:['Plačilo ob prevzemu v salonu','Plačate z gotovino ali kartico, ko pridete po naročilo – po mojem obvestilu, da je pripravljeno.']};
-  return moz.map(function(k){ return '<label class="izbira"><input type="radio" name="placilo" value="'+k+'"'+(P.placilo===k?' checked':'')+'><div><b>'+esc(opis[k][0])+'</b><small>'+esc(opis[k][1])+'</small></div></label>'; }).join('');
+  return moz.map(function(k){ return '<label class="izbira"><input type="radio" name="placilo" value="'+k+'"'+(P.placilo===k?' checked':'')+'><div><b>'+esc(opis[k][0])+'</b><small>'+esc(opis[k][1])+'</small>'+(k==='kartica'?KARTICE_HTML:'')+'</div></label>'; }).join('');
 }
 function doplacilo(){ return (PODATKI.placilo==='povzetje'&&PODATKI.dostava==='posta'&&NAST.povzetje!=null)?NAST.povzetje:0; }
 function polje(ime,oznaka,tip,vr,ac,nap){
