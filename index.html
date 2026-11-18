@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v28-2026-11-18 (novicke: brez polja Ime, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v30-2026-11-18 (naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Trgovina – Frizerski studio Najs</title>
+<title>Najs Shop – spletna trgovina Frizerskega studia Najs</title>
 <link rel="canonical" href="https://najsshop.si/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sl_SI">
+<meta property="og:site_name" content="Najs Shop – Frizerski studio Najs">
+<meta property="og:title" content="Najs Shop – nega las, ki jo uporabljam v salonu">
+<meta property="og:description" content="Kemon Actyva, Kemon Hair Care in krtače Olivia Garden. Prevzem v salonu v Škofji Loki ali dostava po Sloveniji.">
+<meta property="og:url" content="https://najsshop.si/">
+<meta property="og:image" content="https://najsshop.si/og-najsshop.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Profesionalna nega las Kemon in krtače Olivia Garden – izdelki, s katerimi Nataša dela v salonu. Prevzem v Škofji Loki ali dostava po Sloveniji.">
 <link rel="icon" href="logo.png">
 <link id="najsFonts" data-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -401,7 +411,7 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 .nov-okno{position:relative;display:grid;grid-template-columns:44% 56%;width:min(760px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:translateY(12px);transition:transform .25s}
 .nov-ozadje.on .nov-okno{transform:none}
 .nov-slika{background:#F4E9DC;min-height:100%}
-.nov-slika img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.nov-slika img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;display:block}
 .nov-vsebina{padding:34px 30px 26px;display:flex;flex-direction:column;justify-content:center}
 .nov-x{position:absolute;top:10px;right:10px;width:40px;height:40px;border:none;border-radius:50%;background:rgba(255,255,255,.9);font-size:1.3rem;color:var(--navy);cursor:pointer}
 .nov-x:hover{background:#fff;color:var(--koral-temna)}
@@ -425,8 +435,8 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 @media (max-width:640px){
   .nov-ozadje{align-items:flex-end;padding:0}
   .nov-okno{grid-template-columns:1fr;border-radius:22px 22px 0 0;max-height:94dvh}
-  .nov-slika{height:190px;min-height:0}
-  .nov-slika img{object-position:50% 42%}
+  .nov-slika{height:210px;min-height:0}
+  .nov-slika img{object-position:50% 52%}
   .nov-vsebina{padding:20px 18px calc(20px + env(safe-area-inset-bottom,0))}
   .nov-vsebina h2{font-size:1.5rem}
 }
@@ -434,7 +444,8 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 .koda-vrsta{margin:0 0 10px}
 .koda-vrsta details summary{cursor:pointer;font-size:.9rem;color:var(--koral-txt);list-style:none}
 .koda-vrsta details summary::-webkit-details-marker{display:none}
-.koda-polje{display:flex;gap:8px;margin-top:8px}
+.koda-oznaka{display:block;font-size:.86rem;font-weight:600;color:var(--navy);margin-bottom:6px}
+.koda-polje{display:flex;gap:8px}
 .koda-polje input{flex:1;min-width:0;height:42px;border:1.5px solid var(--crta);border-radius:10px;padding:0 12px;font:inherit;text-transform:uppercase}
 .koda-polje button{height:42px;padding:0 16px;border:1.5px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);font:inherit;font-weight:600;cursor:pointer}
 .koda-msg{font-size:.84rem;margin-top:6px;color:var(--koral-txt)}
@@ -1170,7 +1181,9 @@ function korak1(){
       +'<div class="p-cena">'+eur(Number(a.cena)*p.kolicina)+'</div></div>';
   });
   t.innerHTML=h;
-  d.innerHTML='<div class="vsota"><span>Izdelki</span><span>'+eur(vsotaIzdelkov())+'</span></div>'
+  var pp1=popustZnesek();
+  d.innerHTML=kodaHtml()+'<div class="vsota"><span>Izdelki</span><span>'+eur(vsotaIzdelkov())+'</span></div>'
+    +(pp1?'<div class="vsota popust"><span>Popust '+KODA.odst+' % (koda '+esc(KODA.koda)+')</span><span>−'+eur(pp1)+'</span></div><div class="vsota"><span><b>Izdelki s popustom</b></span><span><b>'+eur(vsotaIzdelkov()-pp1)+'</b></span></div>':'')
     +'<div class="drobno" style="margin-top:2px">Cene so končne, DDV ni obračunan (94. člen ZDDV-1). Dostavo izberete v naslednjem koraku – prevzem v salonu je brezplačen.</div>'
     +'<button type="button" class="gumb-glavni" data-naprej>Naprej na dostavo in podatke</button>'
     +'<button type="button" class="gumb-drugi" data-nadaljuj-nakup>Nadaljuj z nakupom</button>';
@@ -1245,14 +1258,15 @@ function doplacilo(){ return (PODATKI.placilo==='povzetje'&&PODATKI.dostava==='p
 function polje(ime,oznaka,tip,vr,ac,nap){
   return '<div class="polje"><label for="f_'+ime+'">'+oznaka+'</label><input id="f_'+ime+'" name="'+ime+'" type="'+tip+'" value="'+esc(vr)+'" autocomplete="'+ac+'"'+(tip==='tel'?' inputmode="tel"':'')+'><span class="napaka-p">'+nap+'</span></div>';
 }
+function osveziDno(){ if(KORAK===1) korak1(); else if(KORAK===2) povzetek2(); }
 function kodaHtml(){
   var v=vsotaIzdelkov();
   if(KODA&&KODA.ok){
     var pr=Number(KODA.prag||NOV.prag);
     return '<div class="koda-vrsta"><div class="koda-ok"><span>Koda <b>'+esc(KODA.koda)+'</b>: '+KODA.odst+' % popusta'+(v<pr?' – velja pri nakupu izdelkov nad '+eur(pr):'')+'</span><button type="button" data-koda-odstrani>Odstrani</button></div></div>';
   }
-  return '<div class="koda-vrsta"><details'+(KODA&&KODA.vnos?' open':'')+'><summary>Imate kodo za popust?</summary><div class="koda-polje"><input id="kodaVnos" type="text" placeholder="npr. NAJS-AB12CD" value="'+esc((KODA&&KODA.vnos)||'')+'" autocomplete="off" aria-label="Koda za popust"><button type="button" data-koda-uporabi>Uporabi</button></div>'
-    +'<div class="koda-msg" id="kodaMsg">'+esc((KODA&&KODA.msg)||'')+'</div></details></div>';
+  return '<div class="koda-vrsta"><label for="kodaVnos" class="koda-oznaka">Koda za popust</label><div class="koda-polje"><input id="kodaVnos" type="text" placeholder="npr. NAJS-AB12CD" value="'+esc((KODA&&KODA.vnos)||'')+'" autocomplete="off" enterkeyhint="done"><button type="button" data-koda-uporabi>Uporabi</button></div>'
+    +'<div class="koda-msg" id="kodaMsg" role="status">'+esc((KODA&&KODA.msg)||'')+'</div></div>';
 }
 function povzetek2(){
   var v=vsotaIzdelkov(), d=dostavaCena(), dp=doplacilo(), pp=popustZnesek();
@@ -1430,15 +1444,15 @@ $('#predal').addEventListener('click',function(e){
   if(e.target.closest('[data-naprej]')){ KORAK=2; risiKosarico(); $('#pTelo').scrollTop=0; return; }
   if(e.target.closest('[data-nazaj]')){ KORAK=1; risiKosarico(); return; }
   if(e.target.closest('[data-oddaj]')){ oddaj(e.target.closest('[data-oddaj]')); return; }
-  if(e.target.closest('[data-koda-odstrani]')){ KODA={}; shraniKodo(); povzetek2(); return; }
+  if(e.target.closest('[data-koda-odstrani]')){ KODA={}; shraniKodo(); osveziDno(); return; }
   if(e.target.closest('[data-koda-uporabi]')){
     var vn=$('#kodaVnos'), k=(vn&&vn.value||'').trim().toUpperCase(), km=$('#kodaMsg');
     if(!k){ km.textContent='Vpišite kodo.'; return; }
     km.textContent='Preverjam …';
     sb.rpc('preveri_kodo_popusta',{koda:k}).then(function(r){
       var d=r.data||{};
-      if(r.error||!d.ok){ KODA={vnos:k,msg:d.napaka==='porabljena'?'Ta koda je že bila uporabljena.':'Koda ni veljavna.'}; shraniKodo(); povzetek2(); return; }
-      KODA={koda:k,odst:Number(d.odstotek),prag:Number(d.prag),ok:true}; shraniKodo(); povzetek2();
+      if(r.error||!d.ok){ KODA={vnos:k,msg:d.napaka==='porabljena'?'Ta koda je že bila uporabljena.':'Koda ni veljavna.'}; shraniKodo(); osveziDno(); return; }
+      KODA={koda:k,odst:Number(d.odstotek),prag:Number(d.prag),ok:true}; shraniKodo(); osveziDno();
     }).catch(function(){ km.textContent='Preverjanje ni uspelo. Poskusite znova.'; });
     return;
   }
@@ -1502,6 +1516,7 @@ function novZapri(){
   if(NOV.odprto && lsBeri('najs-novicke')!=='prijavljen') lsPisi('najs-novicke-zaprto',String(Date.now()));
   NOV.odprto=false;
 }
+$('#predal').addEventListener('keydown',function(e){ if(e.target.id==='kodaVnos'&&e.key==='Enter'){ e.preventDefault(); var b=document.querySelector('[data-koda-uporabi]'); if(b) b.click(); } });
 $('#predal').addEventListener('input',function(e){ if(e.target.id==='kodaVnos'){ KODA=KODA&&KODA.ok?KODA:{vnos:e.target.value}; } });
 $('#novOzadje').addEventListener('click',function(e){
   if(e.target.id==='novOzadje'||e.target.closest('#novZapri')||e.target.closest('[data-nov-zapri]')){ novZapri(); return; }
