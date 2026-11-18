@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v33-2026-11-18 (naslov stranke obvezen tudi pri prevzemu v salonu; v32: brez primera v polju za kodo; v31: placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v34-2026-11-18 (naslov stranke viden vedno; pri posti obvezen, pri prevzemu v salonu neobvezen; v33: naslov viden tudi pri prevzemu; v32: brez primera v polju za kodo; v31: placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -1206,7 +1206,7 @@ function korak2(){
    +polje('ime','Ime in priimek','text',P.ime,'name','Vpišite ime in priimek.')
    +polje('telefon','Telefon','tel',P.telefon,'tel','Vpišite telefonsko številko, da vas lahko obvestim.')
    +polje('email','E-pošta <small>(za navodila in potrditev naročila)</small>','email',P.email,'email','E-naslov ni pravilen.')
-   +'<div id="naslovBlok">'
+   +'<div id="naslovBlok"><p class="drobno" id="naslovNeobv"'+(P.dostava==='posta'?' hidden':'')+' style="margin:2px 0 6px">Naslov pri prevzemu v salonu ni obvezen.</p>'
    +polje('naslov','Ulica in hišna številka','text',P.naslov,'street-address','Vpišite svoj naslov.')
    +'<div class="polje-vrsta">'
    +'<div class="polje polje-postna"><label for="f_postna">Poštna št.</label><input id="f_postna" name="postna" type="text" inputmode="numeric" maxlength="4" value="'+esc(P.postna)+'" autocomplete="postal-code"><span class="napaka-p"></span></div>'
@@ -1221,7 +1221,7 @@ function korak2(){
   t.innerHTML=h; povzetek2();
   var f=$('#obrazec');
   f.addEventListener('change',function(e){
-    if(e.target.name==='dostava'){ PODATKI.dostava=e.target.value; $('#placilaIzbira').innerHTML=placilaHtml(); povzetek2(); }
+    if(e.target.name==='dostava'){  PODATKI.dostava=e.target.value; $('#naslovNeobv').hidden=(e.target.value==='posta'); if(e.target.value!=='posta') ['naslov','postna','kraj'].forEach(function(n){ var p=$('#f_'+n); if(p&&p.closest('.polje')) p.closest('.polje').classList.remove('napaka'); }); $('#placilaIzbira').innerHTML=placilaHtml(); povzetek2(); }
     if(e.target.name==='placilo'){ PODATKI.placilo=e.target.value; povzetek2(); }
   });
   f.addEventListener('input',function(e){ if(e.target.name&&PODATKI.hasOwnProperty(e.target.name)){ PODATKI[e.target.name]=e.target.value; var p=e.target.closest('.polje'); if(p) p.classList.remove('napaka'); } });
@@ -1370,7 +1370,9 @@ function pokaziPolje(ime,r){
 var OPOZ_POTRJENA={};
 function preveri(){
   var ok=true, P=PODATKI, prvi=null, polja=['ime','telefon','email'];
-  polja.push('naslov','postna','kraj');   /* v33: naslov vedno obvezen */
+  /* v34: pri posti naslov obvezen; pri prevzemu neobvezen – preverimo samo, kar je vpisano */
+  if(P.dostava==='posta') polja.push('naslov','postna','kraj');
+  else { if(String(P.naslov||'').trim()) polja.push('naslov'); if(String(P.postna||'').trim()||String(P.kraj||'').trim()) polja.push('postna','kraj'); }
   polja.forEach(function(n){
     var r=PREVERI[n](P[n]); pokaziPolje(n,r);
     if(r.stanje!=='napaka'&&r.zapis){ P[n]=r.zapis; var el=$('#f_'+n); if(el) el.value=r.zapis; }
