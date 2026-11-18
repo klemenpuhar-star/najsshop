@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v27-2026-11-18 (novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v28-2026-11-18 (novicke: brez polja Ime, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -517,7 +517,7 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
 <div class="nov-ozadje" id="novOzadje" hidden>
   <div class="nov-okno" role="dialog" aria-modal="true" aria-labelledby="novNaslov">
     <button type="button" class="nov-x" id="novZapri" aria-label="Zapri">×</button>
-    <div class="nov-slika"><img src="https://najs.si/natasa.jpg" alt="Nataša Markuta, Frizerski studio Najs" loading="lazy"></div>
+    <div class="nov-slika"><img src="novicke.webp" alt="Izdelki Kemon Actyva in krtača Olivia Garden" loading="lazy" onerror="this.onerror=null;this.src='https://najs.si/natasa.jpg'"></div>
     <div class="nov-vsebina" id="novVsebina"></div>
   </div>
 </div>
@@ -1489,7 +1489,7 @@ function novOdpri(stanje,podatki){
     h='<h2><b>'+NOV.odst+'&nbsp;% popusta</b> ob prijavi na novičke</h2>'
      +'<p>Prijavite se na moje novičke in prejmite kodo za <b>'+NOV.odst+'&nbsp;% popusta pri nakupu nad '+eur(NOV.prag)+'</b>. Občasno vam pošljem nasvete za nego las, novosti iz salona in ponudbe.</p>'
      +'<p class="nov-pogoj">Kodo lahko vsaka stranka uporabi enkrat.</p>'
-     +'<form id="novObrazec" novalidate><input type="text" name="ime" placeholder="Ime" autocomplete="given-name" maxlength="60"><input type="email" name="email" placeholder="E-naslov" autocomplete="email" required>'
+     +'<form id="novObrazec" novalidate><input type="email" name="email" placeholder="E-naslov" autocomplete="email" required>'
      +'<button type="submit" class="nov-gumb">Prijava na novičke</button><p class="nov-msg" id="novMsg" role="alert"></p></form>'
      +'<p class="nov-drobno">S prijavo se strinjate, da vam po e-pošti pošiljam novice in ponudbe. Prijavo potrdite v e-pošti, odjavite pa se lahko kadarkoli. Več v <a href="https://najs.si/zasebnost.html" target="_blank" rel="noopener">pravilniku o zasebnosti</a>.</p>';
   }
@@ -1515,7 +1515,7 @@ $('#novOzadje').addEventListener('submit',function(e){
   if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(em)){ msg.textContent='Vpišite veljaven e-naslov.'; f.email.focus(); return; }
   if(typeof PREVERI!=='undefined'&&PREVERI.email){ var r=PREVERI.email(em); if(r&&r.stanje==='opozorilo'&&r.predlog&&f.dataset.opoz!==em){ f.dataset.opoz=em; msg.textContent=r.sporocilo+' Če je naslov pravilen, kliknite še enkrat.'; return; } }
   msg.textContent=''; g.disabled=true; g.textContent='Pošiljam …';
-  novFn({akcija:'prijava',ime:f.ime.value.trim(),email:em}).then(function(d){
+  novFn({akcija:'prijava',email:em}).then(function(d){
     if(d&&d.ok&&d.stanje==='ze-prijavljen'){ lsPisi('najs-novicke','prijavljen'); g.disabled=false; g.textContent='Prijava na novičke'; msg.textContent='Ta e-naslov je že prijavljen – kodo ste prejeli v e-pošti ob potrditvi.'; return; }
     if(d&&d.ok){ lsPisi('najs-novicke','poslano'); novOdpri('poslano'); return; }
     g.disabled=false; g.textContent='Prijava na novičke';
