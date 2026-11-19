@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NAJS-TRGOVINA: v39-2026-11-19 (uporabnost: koda za popust na klik, krajsi spodnji del kosarice, gumb Dodaj v kosarico vedno viden v oknu izdelka na telefonu, obvestilo ne prekrije kosarice, stran ne poskakuje ob nalaganju, prve slike takoj, dostopnost (kontrast, imena gumbov, velikost povezav), ikone in manifest, podatki o izdelkih za Google; v38: pisave in knjiznici v repozitoriju najsshop (fiksne razlicice, brez Googla in jsDelivr), brez okna za privolitev; v37: preklicano narocilo s kartico: izdelki nazaj v kosarico; v36: obvezna polja oznacena z zvezdico, naslov z zvezdico samo pri posti; v35: placilo s kartico: besedilo Visa, Mastercard ali Maestro + znacke kartic; v34: naslov stranke viden vedno; pri posti obvezen, pri prevzemu v salonu neobvezen; v33: naslov viden tudi pri prevzemu; v32: brez primera v polju za kodo; v31: placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
+<!-- NAJS-TRGOVINA: v40-2026-11-19 (pri polnilih nevsiljiva ponudba steklenice Refill Bottle 500 ml – v oknu izdelka in v kosarici; v39: uporabnost: koda za popust na klik, krajsi spodnji del kosarice, gumb Dodaj v kosarico vedno viden v oknu izdelka na telefonu, obvestilo ne prekrije kosarice, stran ne poskakuje ob nalaganju, prve slike takoj, dostopnost (kontrast, imena gumbov, velikost povezav), ikone in manifest, podatki o izdelkih za Google; v38: pisave in knjiznici v repozitoriju najsshop (fiksne razlicice, brez Googla in jsDelivr), brez okna za privolitev; v37: preklicano narocilo s kartico: izdelki nazaj v kosarico; v36: obvezna polja oznacena z zvezdico, naslov z zvezdico samo pri posti; v35: placilo s kartico: besedilo Visa, Mastercard ali Maestro + znacke kartic; v34: naslov stranke viden vedno; pri posti obvezen, pri prevzemu v salonu neobvezen; v33: naslov viden tudi pri prevzemu; v32: brez primera v polju za kodo; v31: placilo s kartico prek SumUp – vidno, ko je v adminu vklopljeno, ali za preizkus z ?kartica=test; v30: naslov Najs Shop, slika za deljenje na druzbenih omrezjih; v29: polje za kodo za popust vidno ze v kosarici in pri oddaji, popust v izracunu; v28: novicke: brez polja Ime, slika izdelkov, slika novicke.webp v repozitoriju najsshop; v27: novicke: okno s prijavo in 10 % popusta nad 50 EUR, dvojna potrditev, koda v kosarici; v26: gumb »Frizerski studio Najs«; v25: selitev na najsshop.si: slike in povezave na najs.si, popravljen spor razreda .navodila; v24: skupina Nega lasisca v meniju; odstranjeni gumbi »Kaj potrebujejo vaši lasje?«; v23: spustni meni »Kaj iščete?« s skupinami Nega las / Styling / Pripomočki; v22: navodila za uporabo v oknu izdelka; v21: zavihki vrst na racunalniku vsi vidni, na telefonu namig za drsenje; v20: situacija las »Styling« = izdelki Kemon Hair Style, rdeča vrstica z namenom pri Hair Style, ostanejo tudi pod svojimi potrebami; v19: pravno: gumb z obveznostjo placila, cena za liter, maticna stevilka v nogi; v18: posta: locena polja postna stevilka + kraj, kraj se izpise sam iz vgrajenega seznama postnih stevilk; v17: preverjanje telefona, e-poste in naslova; placilo ob prevzemu v salonu; prevzem sele po obvestilu; v16: potrditev narocila sele ob placilu; v15: telefon: izbirnika cez celo sirino, napis Situacija las, znacka Vegansko spodaj; v14: situacije las; v13: UPN QR, povzetje) -->
 <html lang="sl">
 <head>
 <meta charset="UTF-8">
@@ -502,6 +502,18 @@ legend{font-weight:600;font-size:.92rem;margin-bottom:10px;padding:0}
  "address":{"@type":"PostalAddress","streetAddress":"Cesta talcev 3B","postalCode":"4220","addressLocality":"Škofja Loka","addressCountry":"SI"},
  "hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","applicableCountry":"SI","returnPolicyCategory":"https://schema.org/MerchantReturnFiniteReturnWindow","merchantReturnDays":14,"returnMethod":"https://schema.org/ReturnByMail","merchantReturnLink":"https://najs.si/pogoji.html#odstop"}}
 </script>
+<style id="v40">
+.steklenica{display:flex;align-items:center;gap:12px;border:1px solid var(--crta);border-radius:var(--r-mal);padding:10px 12px;background:#fdfaf6;font-size:.84rem;line-height:1.45}
+.steklenica img{width:56px;height:56px;border-radius:8px;object-fit:cover;background:var(--ploscica);flex-shrink:0}
+.steklenica b{display:block;font-weight:600;font-size:.86rem}
+.steklenica span{color:var(--siva)}
+.steklenica i{font-style:normal;color:var(--navy);font-weight:500}
+.steklenica > div{flex:1;min-width:0}
+.stek-dodaj{flex-shrink:0;border:1.5px solid var(--navy);background:none;color:var(--navy);border-radius:999px;min-height:36px;padding:0 12px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.stek-dodaj:hover{background:var(--navy);color:#fff}
+.stek-ok{flex-shrink:0;color:#2f6b45;font-weight:600;font-size:.82rem;white-space:nowrap}
+.steklenica.v-kos{margin:12px 0 4px}
+</style>
 </head>
 <body>
 
@@ -1113,6 +1125,20 @@ function pocisti(){ F.potreba='';F.vrsta='';F.linija='';F.isci=''; $('#isci').va
 
 /* ── okno izdelka ── */
 var ZADNJI_FOKUS=null, O_KARTICA=null, O_KOL=1;
+/* v40: polnila (vrečke 500 ml) – nevsiljiva ponudba steklenice Refill Bottle 500 ml */
+function steklenica(){ return ARTIKLI.filter(function(a){ return /refill bottle/i.test(a.naziv); })[0]||null; }
+function jePolnilo(a){ return !!(a && /polnilo/i.test(a.velikost||'')); }
+function stekVKosarici(){ var s=steklenica(); return !!(s && KOS.some(function(x){ return x.id===s.id; })); }
+function steklenicaHtml(kje){
+  var s=steklenica(); if(!s) return '';
+  var v=stekVKosarici();
+  return '<div class="steklenica'+(kje==='kos'?' v-kos':'')+'">'
+    +(s.slika_url?'<img src="'+esc(slikaUrl(s.slika_url))+'" alt="" loading="lazy" width="56" height="56">':'')
+    +'<div><b>Steklenica za polnilo</b><span>Polnilo je v vrečki – prelijte ga v <i>'+esc(s.naziv)+' '+esc(s.velikost||'')+'</i>, ki jo uporabljate znova in znova.</span></div>'
+    +(v?'<span class="stek-ok">✓ V košarici</span>'
+       :'<button type="button" class="stek-dodaj" data-dodaj-steklenico>+ '+eur(s.cena)+'</button>')
+    +'</div>';
+}
 function odpriIzdelek(c){
   O_KARTICA=c; O_KOL=1; ZADNJI_FOKUS=document.activeElement; risiOkno();
   var ok=$('#okno'); ok.hidden=false; requestAnimationFrame(function(){ ok.classList.add('on'); $('#zatemni').classList.add('on'); });
@@ -1147,6 +1173,7 @@ function risiOkno(){
   if(a.potrebe&&a.potrebe.length) h+='<div class="o-oznake" aria-label="Primerno za">'+a.potrebe.map(function(p){ return '<span>'+esc(p)+'</span>'; }).join('')+'</div>';
   h+='<div class="o-nakup"><div class="kolicina"><button type="button" data-okol="-1" aria-label="Manj">−</button><output id="oKol">'+O_KOL+'</output><button type="button" data-okol="1" aria-label="Več">+</button></div>'
     +'<button type="button" class="o-dodaj" data-ododaj>Dodaj v košarico</button></div>';
+  if(jePolnilo(a)) h+=steklenicaHtml('okno');   /* v40 */
   /* podobni: ista potreba ali ista linija */
   var pot=(a.potrebe||[])[0];
   var pod=KARTICE.filter(function(x){ return x!==c && (pot?x.potrebe[pot]:x.kategorija===c.kategorija); }).slice(0,8);
@@ -1162,6 +1189,7 @@ $('#okno').addEventListener('click',function(e){
   var v=e.target.closest('[data-ovar]'); if(v){ O_KARTICA.izbrana=v.dataset.ovar; risiOkno(); osveziKartico(O_KARTICA); return; }
   var k=e.target.closest('[data-okol]'); if(k){ O_KOL=Math.max(1,Math.min(20,O_KOL+parseInt(k.dataset.okol))); $('#oKol').textContent=O_KOL; return; }
   if(e.target.closest('[data-ododaj]')){ dodaj(O_KARTICA.izbrana,O_KOL); zapriIzdelek(); return; }
+  if(e.target.closest('[data-dodaj-steklenico]')){ var st=steklenica(); if(st){ dodaj(st.id,1); risiOkno(); } return; }   /* v40 */
   var p=e.target.closest('[data-podoben]'); if(p){ var x=KARTICE.filter(function(c){ return c.kljuc===p.dataset.podoben; })[0]; if(x){ O_KARTICA=x; O_KOL=1; risiOkno(); $('#okno').scrollTop=0; } }
 });
 function osveziKartico(c){ var el=document.querySelector('.kartica[data-k="'+(window.CSS&&CSS.escape?CSS.escape(c.kljuc):c.kljuc)+'"]'); if(el) el.outerHTML=karticaHtml(c); }
@@ -1251,6 +1279,7 @@ function korak1(){
       +'<button type="button" class="odstrani" data-odstrani-id="'+p.id+'">Odstrani</button></div>'
       +'<div class="p-cena">'+eur(Number(a.cena)*p.kolicina)+'</div></div>';
   });
+  if(!stekVKosarici() && KOS.some(function(p){ return jePolnilo(PO_ID[p.id]); })) h+=steklenicaHtml('kos');   /* v40 */
   t.innerHTML=h;
   var pp1=popustZnesek();
   d.innerHTML=kodaHtml()+'<div class="vsota"><span>Izdelki</span><span>'+eur(vsotaIzdelkov())+'</span></div>'
@@ -1600,6 +1629,7 @@ $('#predal').addEventListener('click',function(e){
     KORAK=1; risiKosarico(); return;
   }
   if(e.target.closest('[data-oddaj]')){ oddaj(e.target.closest('[data-oddaj]')); return; }
+  if(e.target.closest('[data-dodaj-steklenico]')){ var st=steklenica(); if(st) dodaj(st.id,1); return; }   /* v40 */
   if(e.target.closest('[data-koda-odpri]')){ KODA_ODPRTO=true; osveziDno(); var kv=$('#kodaVnos'); if(kv) kv.focus(); return; }   /* v39 */
   if(e.target.closest('[data-koda-odstrani]')){ KODA={}; shraniKodo(); osveziDno(); return; }
   if(e.target.closest('[data-koda-uporabi]')){
