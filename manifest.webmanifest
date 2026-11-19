@@ -1,0 +1,14 @@
+{
+  "name": "Najs Shop – spletna trgovina Frizerskega studia Najs",
+  "short_name": "Najs Shop",
+  "lang": "sl",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FBF7F2",
+  "theme_color": "#FBF7F2",
+  "icons": [
+    { "src": "ikona-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "ikona-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "ikona-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
