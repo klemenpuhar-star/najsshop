@@ -1,4 +1,5 @@
-// NAJS Shop – generator podstrani izdelkov (v1, 26. 11. 2026)
+// NAJS Shop – generator podstrani izdelkov (v2, 26. 11. 2026: + izdelki/google-feed.xml za Google Merchant Center; ime brez podvajanja linije, npr. Kemon Yo Cond)
+// v1 (26. 11. 2026)
 // Iz baze (Supabase, javni bralni ključ – isti kot v trgovini) ustvari:
 //   izdelki/index.html            – seznam vseh izdelkov po vrstah
 //   izdelki/<ime-izdelka>/index.html – stran vsakega izdelka (opis, cene, navodila, podatki za Google)
@@ -57,9 +58,9 @@ function zgradiKartice(art) {
     c.glavna = pr || c.variante[0];
     c.linija = LINIJA[c.kategorija] || c.kategorija;
     c.znamka = ZNAMKA[c.kategorija] || c.linija;
-    const zeVImenu = c.ime.toLowerCase().includes(c.linija.toLowerCase().split(" ")[0].replace("_", ""))
-      || c.ime.toLowerCase().includes(c.linija.toLowerCase());
-    c.polnoIme = zeVImenu ? c.ime : `${c.linija} ${c.ime}`;
+    const il = c.ime.toLowerCase(), ll = c.linija.toLowerCase();
+    const zeVImenu = il.includes(ll.split(" ")[0].replace("_", "")) || il.includes(ll);
+    c.polnoIme = ll.includes(il) ? c.linija : (zeVImenu ? c.ime : `${c.linija} ${c.ime}`);
     let s = slug(c.polnoIme), i = 2;
     while (zasedeni.has(s)) s = slug(c.polnoIme) + "-" + i++;
     zasedeni.add(s); c.slug = s;
@@ -231,6 +232,43 @@ ${po.map(([v, s]) => `<section class="skupina"><h2>${esc(v)}</h2><div class="mre
   return ogrodje({ naslov: "Vsi izdelki – profesionalna nega las Kemon | Najs Shop", opis: `Vsi izdelki spletne trgovine Najs Shop (${kartice.length}): šamponi, maske, nega brez izpiranja, olja, styling in barvni balzami Kemon. Prevzem v Škofji Loki ali dostava po Sloveniji.`, url, slika: "https://najsshop.si/og-najsshop-v2.jpg", vsebina, ld });
 }
 
+
+// ── seznam izdelkov za Google Merchant Center (ena vrstica = ena različica) ──
+const xesc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" }[c]));
+function googleFeed(kartice) {
+  const it = [];
+  for (const c of kartice) for (const v of c.variante) {
+    const dod = c.barvna ? (v.barva ? " – " + v.barva : "") : (v.velikost ? " " + v.velikost : "");
+    const opis = brezZvezdic([v.funkcija, v.opis, v.zakaj].filter(Boolean).join(". ").replace(/\.\./g, "."));
+    it.push(`<item>
+<g:id>${xesc(v.id)}</g:id>
+<g:title>${xesc((c.polnoIme + dod).slice(0, 150))}</g:title>
+<g:description>${xesc(opis.slice(0, 4900))}</g:description>
+<g:link>${xesc(c.url)}</g:link>
+<g:image_link>${xesc(slikaUrl(v.slika_url))}</g:image_link>
+<g:availability>in_stock</g:availability>
+<g:price>${Number(v.cena).toFixed(2)} EUR</g:price>
+<g:condition>new</g:condition>
+<g:brand>${xesc(c.znamka)}</g:brand>
+<g:google_product_category>${c.kategorija === "Krtače" ? "Health &amp; Beauty &gt; Personal Care &gt; Hair Care &gt; Combs &amp; Brushes" : "Health &amp; Beauty &gt; Personal Care &gt; Hair Care"}</g:google_product_category>
+<g:product_type>${xesc(c.linija + " > " + c.vrsta)}</g:product_type>${c.variante.length > 1 ? `
+<g:item_group_id>${xesc(c.slug)}</g:item_group_id>` : ""}${c.barvna && v.barva ? `
+<g:color>${xesc(v.barva)}</g:color>` : ""}${!c.barvna && v.velikost ? `
+<g:size>${xesc(v.velikost)}</g:size>` : ""}
+</item>`);
+  }
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+<channel>
+<title>Najs Shop – izdelki</title>
+<link>${DOMENA}/</link>
+<description>Profesionalna nega las Kemon in krtače – Frizerski studio Najs, Škofja Loka</description>
+${it.join("\n")}
+</channel>
+</rss>
+`;
+}
+
 function zapisi(rel, html, spremembe) {
   const f = path.join(KOREN, rel);
   const prej = fs.existsSync(f) ? fs.readFileSync(f, "utf8") : null;
@@ -270,6 +308,7 @@ async function main() {
   // seznam poti za trgovino (povezava »Več o izdelku« v oknu izdelka)
   const poti = {}; for (const c of kartice) poti[c.kljuc] = c.slug;
   zapisi("izdelki/poti.json", JSON.stringify(poti) + "\n", spremembe);
+  zapisi("izdelki/google-feed.xml", googleFeed(kartice), spremembe);
   console.log(`Izdelkov: ${art.length}, strani: ${kartice.length}, spremenjenih datotek: ${spremembe.length}`);
   spremembe.slice(0, 50).forEach((s) => console.log("  " + s));
 }
