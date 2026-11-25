@@ -1,0 +1,27 @@
+# NAJS Shop – vsak dan (in na zahtevo) iz baze posodobi strani izdelkov /izdelki/ in sitemap.xml
+name: Strani izdelkov
+on:
+  schedule:
+    - cron: "17 3 * * *"   # vsak dan ob 4.17 (po slovenskem času pozimi)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: strani-izdelkov
+  cancel-in-progress: false
+jobs:
+  gradi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Ustvari strani izdelkov
+        run: node orodja/izdelki.mjs
+      - name: Shrani spremembe
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A izdelki sitemap.xml
+          if git diff --cached --quiet; then echo "Ni sprememb."; else git commit -m "Posodobitev strani izdelkov" && git push; fi
